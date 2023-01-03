@@ -103,7 +103,7 @@ const AccountPlanDetail: React.FC = ({ route }) => {
             />
             <S.ContainerBody>
                 <InputSelect
-                    data={accountPlansList}
+                    data={sortList(accountPlansList, 'asc')}
                     title='Conta Pai'
                     type='ACCOUNT-TYPE'
                     value={selectedItem}

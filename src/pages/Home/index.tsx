@@ -1,8 +1,10 @@
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
+import { Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import AccountPlanCard from '../../components/AccountPlanCard/AccountPlanCard';
+import EmptyStateFlatlist from '../../components/EmptyStateFlatlist';
 import { ModalComponent } from '../../components/Modal/Modal';
 import { TopNavigation } from '../../components/TopNavigation/TopNavigation';
 import { IAccountPlanItem } from '../../interfaces/accountPlanInterface';
@@ -63,7 +65,8 @@ const Home: React.FC = () => {
                 </S.TopArea>
                 <S.Flatlist
                     data={listFiltered}
-                    contentContainerStyle={{ paddingBottom: 50 }}
+                    contentContainerStyle={{ paddingBottom: 50, flexGrow: 1 }}
+                    ListEmptyComponent={<EmptyStateFlatlist onCreateNew={() => navigation.navigate('AccountPlanDetail')} />}
                     keyExtractor={(item: IAccountPlanItem) => String(item.code)}
                     renderItem={({ item }) =>
                         <AccountPlanCard

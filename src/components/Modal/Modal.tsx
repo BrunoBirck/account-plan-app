@@ -31,7 +31,7 @@ export const ModalComponent: React.FC<ModalProps> = ({
                         <MaterialIcons name="error-outline" size={60} color={Theme.red} />
                         <S.ModalTextArea>
                             <S.ModalText bold>OPS!</S.ModalText>
-                            <S.ModalText>Preencha os campos para criar um novo plano de contas.</S.ModalText>
+                            <S.ModalText>Preencha os campos corretamente para criar um novo plano de contas.</S.ModalText>
                         </S.ModalTextArea>
                         <S.ModalButtonArea>
                             <S.ModalButton onPress={onRequestClose} activeOpacity={0.7}>
