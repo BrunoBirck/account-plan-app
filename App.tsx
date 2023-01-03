@@ -1,22 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-
-import useCachedResources from './hooks/useCachedResources';
-import useColorScheme from './hooks/useColorScheme';
-import Navigation from './navigation';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/es/integration/react'
+import AppNavigator from './src/navigation';
+import { store, persistor } from './src/store/store';
+import { Theme } from './src/theme/theme';
 
 export default function App() {
-  const isLoadingComplete = useCachedResources();
-  const colorScheme = useColorScheme();
-
-  if (!isLoadingComplete) {
-    return null;
-  } else {
-    return (
-      <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
-        <StatusBar />
-      </SafeAreaProvider>
-    );
-  }
-}
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <SafeAreaProvider>
+          <AppNavigator />
+          <StatusBar backgroundColor={Theme.primary200} style='light' />
+        </SafeAreaProvider>
+      </PersistGate>
+    </Provider>
+  );
+};
